@@ -14,9 +14,9 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+|guess of 60, secret 30     | Go Lower hint | Go Higher hint Output is incorrect, vice versa error|  none|
+|Pressed new game button | New game, new feedback| No feedback from new guesses. History isn't refreshed, history skips first guess... |  none |
+|guess of 78 | Attempts left to decrease 1| Attempts left stayed at 7| none|
 
 ---
 
