@@ -21,6 +21,17 @@ def test_guess_too_low():
     assert outcome == "Too Low"
 
 
+def test_too_high_hint_tells_player_to_go_lower():
+    # When the guess is above the secret, the hint must direct the player LOWER
+    _, message = check_guess(60, 50)
+    assert "LOWER" in message
+
+def test_too_low_hint_tells_player_to_go_higher():
+    # When the guess is below the secret, the hint must direct the player HIGHER
+    _, message = check_guess(40, 50)
+    assert "HIGHER" in message
+
+
 
 def test_parse_guess_valid_integer():
     # A plain integer string parses successfully to its int value
@@ -39,6 +50,14 @@ def test_parse_guess_not_a_number():
 def test_get_range_for_difficulty_easy():
     # Easy difficulty uses the 1-20 range
     assert get_range_for_difficulty("Easy") == (1, 20)
+
+def test_get_range_for_difficulty_normal():
+    # Normal difficulty uses the 1-50 range
+    assert get_range_for_difficulty("Normal") == (1, 50)
+
+def test_get_range_for_difficulty_hard():
+    # Hard difficulty uses the widest 1-100 range
+    assert get_range_for_difficulty("Hard") == (1, 100)
 
 def test_get_range_for_difficulty_unknown_defaults():
     # An unrecognized difficulty falls back to the default 1-100 range
