@@ -37,7 +37,7 @@ if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 1
+    st.session_state.attempts = 0
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -49,11 +49,6 @@ if "history" not in st.session_state:
     st.session_state.history = []
 
 st.subheader("Make a guess")
-
-st.info(
-    f"Guess a number between 1 and 100. "
-    f"Attempts left: {attempt_limit - st.session_state.attempts}"
-)
 
 raw_guess = st.text_input(
     "Enter your guess:",
@@ -81,7 +76,7 @@ if st.session_state.status != "playing":
     if st.session_state.status == "won":
         st.success("You already won. Start a new game to play again.")
     else:
-        st.error("Game over. Start a new game to try again.")
+        st.error("Game over. Start a new game to try again.") #FIX?
     st.stop()
 
 if submit:
@@ -118,9 +113,15 @@ if submit:
                 st.session_state.status = "lost"
                 st.error(
                     f"Out of attempts! "
-                    f"The secret was {st.session_state.secret}. "
+                    f"The secret was {st.session_state.secret}. " #FIX?
                     f"Score: {st.session_state.score}"
                 )
+
+# Rendered after the submit handler so the count reflects the guess just made.
+st.info(
+    f"Guess a number between 1 and 100. "
+    f"Attempts left: {attempt_limit - st.session_state.attempts}"
+)
 
 # Shown after the submit logic so it reflects the just-saved guess.
 with st.expander("Developer Debug Info"):
