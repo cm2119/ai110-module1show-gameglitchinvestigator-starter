@@ -65,7 +65,7 @@ with col3:
 
 if new_game:
     st.session_state.attempts = 0
-    st.session_state.secret = random.randint(1, 100)
+    st.session_state.secret = random.randint(low, high)
     st.session_state.history = []  # empties past guesses
     st.session_state.score = 0      # resets the score
     st.session_state.status = "playing" # lets the game run again
@@ -119,7 +119,7 @@ if submit:
 
 # Rendered after the submit handler so the count reflects the guess just made.
 st.info(
-    f"Guess a number between 1 and 100. "
+    f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 )
 
